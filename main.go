@@ -8,6 +8,7 @@ import (
 	"os/user"
 	"path/filepath"
 	"strings"
+	"net/url"
 
 	"github.com/ghodss/yaml"
 	"github.com/wai-jiang/k8s-oidc-helper/internal/helper"
@@ -67,9 +68,14 @@ func main() {
 	helper.LaunchBrowser(viper.GetBool("open"), oauthUrl, clientID)
 
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter the code Google gave you: ")
+	fmt.Print("Copy the URL of that error page (http://localhost:1/?state=...)")
 	code, _ := reader.ReadString('\n')
-	code = strings.TrimSpace(code)
+	u, err := url.Parse(code)
+	if err != nil {
+		log.Fatal(err)
+	}
+	q := u.Query()
+	code = strings.TrimSpace(q["code"])
 
 	tokResponse, err := helper.GetToken(clientID, clientSecret, code)
 	if err != nil {
