@@ -1,4 +1,4 @@
-module k8s-oidc-helper
+module github.com/wai-jiang/k8s-oidc-helper
 
 go 1.18
 
