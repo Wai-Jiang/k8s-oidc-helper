@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 	"net/url"
+	"log"
 
 	"github.com/ghodss/yaml"
 	"github.com/wai-jiang/k8s-oidc-helper/internal/helper"
@@ -75,9 +76,8 @@ func main() {
 		log.Fatal(err)
 	}
 	q := u.Query()
-	code = strings.TrimSpace(q["code"])
 
-	tokResponse, err := helper.GetToken(clientID, clientSecret, code)
+	tokResponse, err := helper.GetToken(clientID, clientSecret, q["code"])
 	if err != nil {
 		fmt.Printf("Error getting tokens: %s\n", err)
 		os.Exit(1)
