@@ -1,7 +1,7 @@
-module k8s-helper
+module k8s-oidc-helper
 
 go 1.14
 
 
-require internal/bar v0.6.0
-replace internal/bar => ./internal/helper
+require internal/helper v0.6.0
+replace internal/helper => ./internal/helper
