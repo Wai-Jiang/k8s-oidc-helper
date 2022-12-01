@@ -45,7 +45,7 @@ func ReadConfig(path string) (*GoogleConfig, error) {
 func GetToken(clientID, clientSecret, code string) (*TokenResponse, error) {
 	val := url.Values{}
 	val.Add("grant_type", "authorization_code")
-	val.Add("redirect_uri")
+	val.Add("redirect_uri", "http://localhost")
 	val.Add("client_id", clientID)
 	val.Add("client_secret", clientSecret)
 	val.Add("code", code)
