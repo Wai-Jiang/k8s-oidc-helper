@@ -92,7 +92,7 @@ roleRef:
 ## Installation
 
 ```
-go install github.com/wai-jiang//k8s-oidc-helper
+go install github.com/wai-jiang/k8s-oidc-helper
 ```
 
 ## Usage
