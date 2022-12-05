@@ -75,9 +75,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	q := u.Query()
+	formatted_code := u.Query()
 
-	tokResponse, err := helper.GetToken(clientID, clientSecret, q["code"])
+	tokResponse, err := helper.GetToken(clientID, clientSecret, formatted_code["code"][0])
 	if err != nil {
 		fmt.Printf("Error getting tokens: %s\n", err)
 		os.Exit(1)
